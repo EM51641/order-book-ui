@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" href="styles.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Order Book</title>
+    <script type="module" src="/main.js" defer></script>
+  </head>
+
+  <body>
+    <main class="app">
+      <header class="topbar">
+        <div class="brand">
+          <span class="dot" id="status-dot"></span>
+          <h1>MATCHING&nbsp;ENGINE</h1>
+          <span class="symbol" id="symbol-chip">SIM</span>
+          <span class="last-price" id="last-price"></span>
+        </div>
+        <div class="controls">
+          <form class="symbol-load" id="load-form">
+            <input
+              id="symbol-input"
+              list="symbols"
+              placeholder="Symbol…"
+              autocomplete="off"
+              spellcheck="false"
+            />
+            <datalist id="symbols">
+              <option value="AAPL"></option>
+              <option value="MSFT"></option>
+              <option value="NVDA"></option>
+              <option value="TSLA"></option>
+              <option value="AMZN"></option>
+              <option value="GOOGL"></option>
+              <option value="META"></option>
+              <option value="AMD"></option>
+              <option value="SPY"></option>
+              <option value="BTC-USD"></option>
+            </datalist>
+            <button type="submit" id="load" class="btn">Load</button>
+          </form>
+          <span id="load-msg" class="load-msg"></span>
+          <button id="toggle" class="btn btn-start">Start</button>
+          <button id="reset" class="btn">Reset</button>
+          <label class="speed">
+            Speed
+            <input id="speed" type="range" min="60" max="1000" step="20" value="400" />
+            <span id="speed-val" class="mono">400ms</span>
+          </label>
+        </div>
+      </header>
+
+      <section class="book">
+        <!-- ASKS (sell side) -->
+        <div class="side asks">
+          <div class="col-head">
+            <span>Depth</span><span>Price</span><span>Qty</span>
+          </div>
+          <div id="asks" class="rows"></div>
+        </div>
+
+        <!-- SPREAD -->
+        <div class="spread-bar">
+          <div class="quote bid">
+            <span class="label">BID</span>
+            <span id="best-bid" class="val">—</span>
+          </div>
+          <div class="spread-center">
+            <span id="mid" class="mid mono">—</span>
+            <span class="spread-label">SPREAD</span>
+            <span id="spread" class="spread-val mono">—</span>
+            <span id="spread-bps" class="spread-bps mono">—</span>
+          </div>
+          <div class="quote ask">
+            <span class="label">ASK</span>
+            <span id="best-ask" class="val">—</span>
+          </div>
+        </div>
+
+        <!-- BIDS (buy side) -->
+        <div class="side bids">
+          <div id="bids" class="rows"></div>
+          <div class="col-head bottom">
+            <span>Depth</span><span>Price</span><span>Qty</span>
+          </div>
+        </div>
+      </section>
+    </main>
+  </body>
+</html>
